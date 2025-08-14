@@ -1,0 +1,242 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 24px 48px;
+    background: #fff;
+  }
+  
+  /* Title (Posts) — per spec */
+  .title {
+    margin: 0 0 12px;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 600;       /* Semi Bold */
+    font-style: bold;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #15171a;
+  }
+  
+  /* Controls row: search + new post on the same line */
+  .controlsRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* push button to the right */
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  
+  /* Search container exact 419 x 36 on desktop */
+  .searchWrap {
+    position: relative;
+    width: 419px;
+    height: 36px;
+    flex: 0 0 auto; /* don't grow or shrink */
+  }
+  
+  /* Search icon */
+  .searchSvg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  /* Search input — per spec */
+  .search {
+    width: 100%;
+    height: 100%; /* 36px */
+    padding: 8px 12px 8px 40px; /* left padding for icon */
+    box-sizing: border-box;
+  
+    /* Typography (Search Posts text) */
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 400;        /* Regular */
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+  
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    outline: none;
+  }
+  .search::placeholder {
+    /* Match placeholder to the same spec */
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #9AA0A6;
+  }
+  .search:focus {
+    border-color: #CBD5E1;
+  }
+  
+  /* New post button — EXACT properties requested */
+  .newPostBtn {
+    appearance: none;
+    border: none;
+    background: #111827;
+    color: #fff;
+  
+    width: 89px;                  /* ← exact width */
+    height: 36px;                 /* ← exact height */
+    opacity: 1;                   /* ← exact opacity */
+    padding-top: 6px;             /* ← exact padding */
+    padding-right: 12px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    border-radius: 8px;           /* ← exact radius */
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    font-style: semibold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: rotate(0deg);      /* angle: 0 deg */
+    flex-shrink: 0;
+  }
+  .newPostBtn:hover { opacity: .92; }
+  
+  /* List */
+  .list { 
+    margin-top: 10px; 
+    /* —— DIVIDERS —— */
+    border-top: 1.5px solid #EEF0F2;    /* top divider */
+    border-bottom: 1.5px solid #EEF0F2; /* bottom divider */
+  }
+  
+  /* Row item */
+  .row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    /* remove default border here; we'll add it only between items */
+    border-bottom: none;
+  }
+
+  /* Divider BETWEEN items only */
+  .row:not(:last-child) {
+    border-bottom: 1.5px solid #EEF0F2;
+  }
+
+  .rowMain {
+    flex: 1;
+    cursor: pointer;
+    min-width: 0;
+  }
+  
+  /* Each post heading (title) — per spec */
+  .rowTitle {
+    margin: 0 0 4px 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 600;       /* Semi Bold */
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #15171a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Post content preview — xs/normal */
+  .rowExcerpt {
+    margin: 0 0 6px 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 400;        /* normal */
+    font-style: normal;
+    font-size: 12px;         /* xs */
+    line-height: 16px;       /* leading/4 */
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #6B7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Time — xs/normal */
+  .rowMeta {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 400;        /* normal */
+    font-style: normal;
+    font-size: 12px;         /* xs */
+    line-height: 16px;       /* leading/4 */
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #9AA0A6;
+  }
+  
+  /* Actions (edit, delete) */
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .iconBtn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .iconBtn:hover { background: #F3F4F6; }
+  .icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  
+  /* Empty state */
+  .empty {
+    padding: 20px 0;
+    color: #6B7280;
+    font-size: 12px;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+    line-height: 16px;
+    text-align: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 16px; }
+  
+    .controlsRow {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  
+    .searchWrap {
+      width: 100%;
+      height: 36px;
+    }
+  
+    /* Keep requested exact size on mobile too */
+    .newPostBtn {
+      width: 89px;
+      height: 36px;
+    }
+  }
