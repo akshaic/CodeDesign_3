@@ -1,307 +1,415 @@
-/* PAGE */
+/* Page wrapper to match Ghost-like light background */
 .editorWrapper {
-    min-height: 100vh;
-    background: #F5F6F8;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding-bottom: 64px;
-  }
-  
-  /* constrained width */
-  .editorWrapper > .topbar,
-  .editorWrapper > .cover,
-  .editorWrapper > .titleInput,
-  .editorWrapper > .editorArea {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-  
-  /* HEADER */
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 24px 12px;
-  }
-  .leftMeta { display: flex; align-items: center; gap: 10px; color: #6B7280; font-size: 14px; }
-  .backChip { width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 0; cursor: pointer; padding: 0; }
-  .postsText { color: #0F172A; font-weight: 600; }
-  .statusText { color: #6B7280; margin-left: 12px; }
-  .toolbarRight { display: flex; align-items: center; gap: 12px; }
-  .frameBtn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid #E5E7EB; background: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-  .frameBtn:hover { background: #F8FAFC; }
-  .previewBtn { background: #111827; color: #fff; border: none; padding: 8px 16px; height: 36px; border-radius: 8px; font-weight: 600; cursor: pointer; }
-  .publishBtn { background: var(--color-green-600, #00A63E); color: #fff; border: none; padding: 8px 16px; height: 36px; border-radius: 8px; font-weight: 600; cursor: not-allowed; }
-  
-  /* COVER CARD */
-  .cover {
-    background: #FFFFFF;
-    border: 1.5px dashed #D7DDE5;
-    border-radius: 12px;
-    min-height: 260px;
-    margin-top: 8px;
-    padding: 56px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-  
-    /* leave nice space before the title */
-    margin-bottom: 40px;
-  }
-  .uploadIcon { width: 22px; height: 22px; opacity: .75; margin: 0 auto 14px; display: block; }
-  .coverLead {
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    color: #6B7280;
-  }
-  .coverLead .muted { color: #9AA0A6; }
-  .coverFormats { color: #9AA0A6; font-size: 12px; margin-top: 4px; }
-  .coverFilled { width: 100%; }
-  .coverImg { width: 100%; height: auto; border-radius: 10px; display: block; }
-  
-  /* HIDDEN INPUTS */
-  .hiddenInput { display: none; }
-  
-  /* TITLE — Inter / semibold / 4xl / leading-10 + space before */
-  .titleInput {
-    display: block;
-    width: 100%;
-    border: none;
-    outline: none;
-    /* space before title, in addition to cover's margin-bottom */
-    margin-top: 16px;
-    padding: 0 24px 14px;
-    background: transparent;
-  
-    /* font/family/sans + font/weight/semibold + font/size/4xl + font/leading/10 */
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-    font-weight: 600;
-    font-size: 36px;   /* 4xl ≈ 36px */
-    line-height: 40px; /* leading-10 */
-    letter-spacing: 0; /* normal */
-    color: #0F172A;
-  
-    border-bottom: 1px solid #E5E7EB;
-  }
-  .titleInput::placeholder {
-    color: #CBD5E1;
-    font-weight: 600;
-  }
-  
-  /* EDITOR BLOCK */
-  .editorArea {
-    position: relative;
-    min-height: 260px;
-    padding: 10px 24px 0;
-  }
-  
-  /* content */
-  .editorContent { position: relative; }
-  .editorContent :global(.ProseMirror) {
-    min-height: 260px;
-    outline: none;
-    border: none;
-    background: transparent;
-    color: #334155;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-    line-height: 1.7;
-    font-family: Georgia, serif;
-  }
-  .editorContent :global(.ProseMirror p) { margin: 0 0 14px; }
-  .editorContent :global(.ProseMirror h2) { font-size: 28px; line-height: 1.3; margin: 20px 0 10px; font-weight: 800; font-family: "Inter", sans-serif; }
-  .editorContent :global(.ProseMirror h3) { font-size: 22px; line-height: 1.35; margin: 18px 0 8px; font-weight: 800; font-family: "Inter", sans-serif; }
-  .editorContent :global(.ProseMirror blockquote) { border-left: 4px solid #E6E8EB; margin: 16px 0; padding: 6px 16px; color: #4B5563; background: #FAFAFA; border-radius: 6px; }
-  .editorContent :global(.ProseMirror ul),
-  .editorContent :global(.ProseMirror ol) { padding-left: 22px; margin: 10px 0 16px; }
-  .editorContent :global(.ProseMirror li) { margin: 6px 0; }
-  .editorContent :global(.ProseMirror hr) { border: none; border-top: 1px solid #E5E7EB; margin: 20px 0; }
-  
-  /* more breathing room around inserted images */
-  .editorContent :global(img) {
-    max-width: 100%;
-    border-radius: 8px;
-    display: block;
-    margin: 20px 0 28px;
-  }
-  
-  .editorContent :global(.ProseMirror a) { color: #1F6FEB; text-decoration: none; }
-  .editorContent :global(.ProseMirror a:hover) { text-decoration: underline; }
-  
-  /* YouTube responsive wrapper */
-  .ytEmbed {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 16px 0 28px;
-  }
-  .ytEmbed iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  
-  /* Simple tweet block */
-  .tweetEmbed {
-    background: #F8FAFC;
-    border: 1px solid #E5E7EB;
-    border-radius: 8px;
-    padding: 12px 14px;
-    color: #0F172A;
-    margin: 14px 0 22px;
-  }
-  
-  /* PLACEHOLDER */
-  .pmPlaceholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 28px;
-    color: #9AA0A6;
-  }
-  .editorArea .pmPlaceholder { display: none; }
-  .editorArea.isEmpty:not(.isFocused) .pmPlaceholder { display: block; }
-  
-  /* BUBBLE TOOLBAR */
-  .bubbleMenu {
-    position: absolute;
-    z-index: 30;
-    display: flex;
-    gap: 6px;
-    background: #111827;
-    color: #fff;
-    border-radius: 10px;
-    padding: 6px;
-    box-shadow: 0 4px 18px rgba(0,0,0,.15);
-  }
-  .bubbleBtn {
-    appearance: none;
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-weight: 700;
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .bubbleBtn:hover { background: rgba(255,255,255,.1); }
-  
-  /* “+” INSERTER — larger button + icon */
-  /* Make the + icon fill the whole circular button */
+  min-height: 100vh;
+  background: #f6f7f9;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding-bottom: 60px;
+}
+
+/* Limit inner width like the screenshot */
+.editorWrapper > .topbar,
+.editorWrapper > .cover,
+.editorWrapper > .titleInput,
+.editorWrapper > .editorArea {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- Top bar (breadcrumb + actions) ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 24px 12px;
+}
+
+/* Left meta area */
+.leftMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Back chip: border only (no background) */
+.backChip {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: transparent;
+  color: black;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  border: 1px solid #D1D5DB;
+}
+.backChip:hover { border-color: #9CA3AF; }
+.backArrow { font-size: 14px; line-height: 1; }
+
+.postsText { color: #0f172a; font-weight: 600; }
+.statusText { color: #6b7280; margin-left: 12px; }
+
+/* Right actions */
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Options button to the left of Preview (frame.svg) */
+.frameBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.frameBtn:hover { background: #F8FAFC; }
+
+/* Preview = dark pill */
+.previewBtn {
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Publish = green pill (disabled by spec) */
+.publishBtn {
+  background: var(--color-green-600, #00A63E);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ---- Cover dashed card ---- */
+.cover {
+  background: #ffffff;
+  border: 1.5px dashed #d7dde5;
+  border-radius: 10px;
+  min-height: 260px;
+  margin-top: 8px;
+  padding: 56px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.coverEmpty {}
+
+.uploadIcon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+  margin: 0 auto 14px;
+  display: block;
+}
+
+/* Upload text spec */
+.coverLead {
+  color: #0f172a;
+  margin-bottom: 6px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+.coverLead strong { font-weight: 600; }
+.muted { color: #949ba4; }
+
+.coverFormats {
+  color: #9aa0a6;
+  font-size: 12px;
+}
+
+.coverFilled { width: 100%; }
+.coverImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Hidden file input */
+.hiddenInput { display: none; }
+
+/* ---- Title input with underline ---- */
+.titleInput {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-top: 26px;
+  padding: 0 24px 14px;
+  background: transparent;
+
+  /* Project title typography */
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-weight: 600;
+  font-size: 36px;   /* approx 4xl */
+  line-height: 40px; /* condensed a bit */
+  letter-spacing: 0;
+  color: #0f172a;
+
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 16px;
+}
+.titleInput::placeholder { color: #cbd5e1; font-weight: 600; }
+
+/* ---- Editor area ---- */
+.editorArea {
+  padding: 12px 24px 0;
+  position: relative;
+}
+
+/* Post content typography spec */
+.editorContent :global(.ProseMirror) {
+  font-family: Georgia, "Times New Roman", Times, serif; /* serif */
+  font-weight: 500;                                      /* medium */
+  font-style: normal;                                    /* Regular */
+  font-size: 18px;                                       /* lg */
+  line-height: 28px;                                     /* leading/7 */
+  letter-spacing: 0;                                     /* normal */
+  vertical-align: middle;
+  min-height: 220px;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #334155;
+}
+
+/* Placeholder text */
+.pmPlaceholder {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 12px;
+  pointer-events: none;
+  color: #9aa0a6;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* Paragraph spacing and basics */
+.editorContent :global(.ProseMirror p) { margin: 0 0 14px 0; }
+.editorContent :global(.ProseMirror h2) {
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 20px 0 10px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+}
+.editorContent :global(.ProseMirror h3) {
+  font-size: 22px;
+  line-height: 1.35;
+  margin: 18px 0 8px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+}
+.editorContent :global(.ProseMirror blockquote) {
+  border-left: 4px solid #e6e8eb;
+  margin: 16px 0;
+  padding: 6px 16px;
+  color: #4b5563;
+  background: #fafafa;
+  border-radius: 6px;
+}
+.editorContent :global(.ProseMirror ul),
+.editorContent :global(.ProseMirror ol) {
+  padding-left: 22px;
+  margin: 10px 0 16px;
+}
+.editorContent :global(.ProseMirror li) { margin: 6px 0; }
+.editorContent :global(.ProseMirror hr) {
+  border: none;
+  border-top: 1px solid #e6e8eb;
+  margin: 20px 0;
+}
+.editorContent :global(.ProseMirror a) {
+  color: #1f6feb;
+  text-decoration: none;
+}
+.editorContent :global(.ProseMirror a:hover) { text-decoration: underline; }
+.editorContent :global(.ProseMirror img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 18px 0; /* more space after image */
+}
+
+/* —— Bubble toolbar —— */
+.bubbleMenu {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 40;
+}
+.bubbleTag {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.bubbleBtn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-weight: 700;
+  color: #111827;
+  cursor: pointer;
+}
+.bubbleBtn:hover {
+  background: #F3F4F6;
+  border-color: #E5E7EB;
+}
+.bubbleBtnActive {
+  background: #F3F4F6;
+  border-color: #E5E7EB;
+}
+
+/* —— “+” dock and menu —— */
 .plusDock {
-    position: absolute;
-    left: -48px;
-    transform: translateY(-50%);
-    z-index: 25;
-  }
-  
-  /* Use the SVG as a full-bleed background image */
-  .plusBtn {
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    border: 0px solid #E5E7EB;
-    background: #FFFFFF url('../../public/plus.svg') center / 100% 100% no-repeat;
-    padding: 0;                 /* no inner gap */
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .plusBtn:hover { background-color: #F8FAFC; }
-  
-  /* Hide the <img> inside since the background handles the icon */
-  .plusIcon {
-    display: none !important;
-  }
-  
-  /* INSERT MENU */
-  .insertMenu {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 220px;
-    background: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 12px;
-    box-shadow: 0 10px 28px rgba(0,0,0,.12);
-    padding: 6px;
-    display: grid;
-    gap: 4px;
-  }
-  .insertItem {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-    font-size: 14px;
-    color: #111827;
-  }
-  .insertItem:disabled { opacity: .55; cursor: not-allowed; }
-  .insertItem:hover { background: #F8FAFC; }
-  .itemIcon { width: 16px; height: 16px; display: inline-block; }
-  
-  /* MODAL (Unsplash/Picsum) */
-  .modalOverlay {
-    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 60;
-  }
-  .modalPanel {
-    width: min(1000px, 92vw);
-    max-height: 80vh;
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    box-shadow: 0 12px 36px rgba(0,0,0,.18);
-    display: flex;
-    flex-direction: column;
-  }
-  .modalHeader {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 16px; border-bottom: 1px solid #EEF0F2;
-  }
-  .modalTitle { font-weight: 600; color: #111827; }
-  .modalClose {
-    background: transparent; border: 0; font-size: 22px; line-height: 1;
-    width: 32px; height: 32px; cursor: pointer; border-radius: 6px;
-  }
-  .modalClose:hover { background: #F3F4F6; }
-  .modalBody { padding: 12px 16px; overflow: auto; }
-  .modalLoading { padding: 16px; color: #6B7280; }
-  .modalGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
-  }
-  .modalThumb {
-    border: 0; padding: 0; background: #fff; cursor: pointer; border-radius: 8px; overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-  }
-  .modalThumb img { width: 100%; height: 120px; object-fit: cover; display: block; }
-  
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .topbar { padding: 16px; }
-    .cover { padding: 40px 12px; min-height: 220px; margin-bottom: 32px; }
-    .titleInput { font-size: 32px; line-height: 38px; margin-top: 14px; }
-    .editorContent :global(.ProseMirror) { font-size: 16px; }
-    .plusDock { left: -42px; }
-  }
-  
+  position: absolute;
+  left: -48px;
+  transform: translateY(-50%);
+  z-index: 25;
+}
+.plusBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF; /* removed background-image */
+  color: #111827;
+  line-height: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.plusBtn:hover { background-color: #F8FAFC; }
+/* Make the <img src="/plus.svg" /> fill the circle */
+.plusIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.insertMenu {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  padding: 6px;
+}
+
+.insertItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #111827;
+  font-weight: 500;
+}
+.insertItem:hover { background: #F8FAFC; }
+.itemIcon { width: 18px; height: 18px; display: block; }
+
+/* —— Modal (Unsplash) —— */
+.modalOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 60;
+}
+.modalPanel {
+  width: min(880px, 92vw);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+.modalHeader { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid #E5E7EB;}
+.modalTitle { font-weight:600; }
+.modalClose { border:none; background:transparent; font-size:20px; cursor:pointer; }
+.modalBody { padding:16px; }
+.modalLoading { padding: 40px; text-align: center; color: #6B7280; }
+.modalGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.modalThumb {
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.modalThumb img { width: 100%; height: auto; display: block; }
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .topbar { padding: 16px; }
+  .toolbarRight { gap: 8px; }
+  .previewBtn, .publishBtn { height: 34px; padding: 8px 12px; }
+  .cover { padding: 40px 12px; min-height: 220px; }
+  .titleInput { font-size: 28px; line-height: 36px; }
+  .editorContent :global(.ProseMirror) { font-size: 16px; line-height: 26px; }
+  .modalGrid { grid-template-columns: repeat(2, 1fr); }
+}

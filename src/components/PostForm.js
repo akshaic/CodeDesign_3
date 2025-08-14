@@ -127,7 +127,6 @@ const PostForm = () => {
       setIsFocused(false);
       setIsEmpty(editor?.isEmpty ?? false);
       setShowBubble(false);
-      // keep insert menu managed by outside-click handler
     },
   });
 
@@ -180,16 +179,12 @@ const PostForm = () => {
       updateUI();
     };
 
-    // Only attach after the editor signals it's created
     editor.on('create', bind);
 
-    // Fallback: try to bind on next tick (in case 'create' already fired)
     const t = setTimeout(() => {
       try {
         bind();
-      } catch {
-        /* ignore */
-      }
+      } catch {}
     }, 0);
 
     return () => {
@@ -381,6 +376,13 @@ const PostForm = () => {
     setShowInsertMenu(false);
   };
 
+  // Derive current mark/node states for the bubble
+  const isBold = !!editor?.isActive('bold');
+  const isItalic = !!editor?.isActive('italic');
+  const isH2 = !!editor?.isActive('heading', { level: 2 });
+  const isH3 = !!editor?.isActive('heading', { level: 3 });
+  const headingLabel = isH2 ? 'Heading 2' : isH3 ? 'Heading 3' : null;
+
   return (
     <div className={styles.editorWrapper}>
       {/* Header */}
@@ -454,7 +456,7 @@ const PostForm = () => {
         ref={editorAreaRef}
         className={`${styles.editorArea} ${isEmpty ? styles.isEmpty : ''} ${isFocused ? styles.isFocused : ''}`}
       >
-        {/* Bubble toolbar */}
+        {/* Bubble toolbar (like screenshot) */}
         {showBubble && (
           <div
             className={styles.bubbleMenu}
@@ -462,12 +464,63 @@ const PostForm = () => {
             onMouseDown={(e) => e.preventDefault()}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className={styles.bubbleBtn} onClick={() => editor.chain().focus().toggleBold().run()} title="Bold">B</button>
-            <button className={styles.bubbleBtn} onClick={() => editor.chain().focus().toggleItalic().run()} title="Italic">I</button>
-            <button className={styles.bubbleBtn} onClick={() => toggleHeading(2)} title="H2">H2</button>
-            <button className={styles.bubbleBtn} onClick={() => toggleHeading(3)} title="H3">H3</button>
-            <button className={styles.bubbleBtn} onClick={() => editor.chain().focus().toggleBlockquote().run()} title="Blockquote">“”</button>
-            <button className={styles.bubbleBtn} onClick={setLink} title="Link">🔗</button>
+            {headingLabel && (
+              <div className={styles.bubbleTag}>{headingLabel}</div>
+            )}
+
+            <button
+              className={`${styles.bubbleBtn} ${isBold ? styles.bubbleBtnActive : ''}`}
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              title="Bold"
+              aria-label="Bold"
+            >
+              B
+            </button>
+
+            <button
+              className={`${styles.bubbleBtn} ${isItalic ? styles.bubbleBtnActive : ''}`}
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              title="Italic"
+              aria-label="Italic"
+            >
+              <span style={{ fontStyle: 'italic' }}>I</span>
+            </button>
+
+            <button
+              className={`${styles.bubbleBtn} ${isH2 ? styles.bubbleBtnActive : ''}`}
+              onClick={() => toggleHeading(2)}
+              title="Heading 2"
+              aria-label="Heading 2"
+            >
+              H
+            </button>
+
+            <button
+              className={`${styles.bubbleBtn} ${isH3 ? styles.bubbleBtnActive : ''}`}
+              onClick={() => toggleHeading(3)}
+              title="Heading 3"
+              aria-label="Heading 3"
+            >
+              H
+            </button>
+
+            <button
+              className={styles.bubbleBtn}
+              onClick={() => editor.chain().focus().toggleBlockquote().run()}
+              title="Blockquote"
+              aria-label="Blockquote"
+            >
+              <span>❝</span>
+            </button>
+
+            <button
+              className={styles.bubbleBtn}
+              onClick={setLink}
+              title="Link"
+              aria-label="Link"
+            >
+              <span>🔗</span>
+            </button>
           </div>
         )}
 
@@ -485,8 +538,8 @@ const PostForm = () => {
               className={styles.plusBtn}
               onClick={(e) => { e.stopPropagation(); setShowInsertMenu((v) => !v); }}
               title="Add block"
+              aria-label="Add block"
             >
-              {/* if you switched to background-image fill, the <img> can be hidden via CSS */}
               <img src="/plus.svg" alt="" className={styles.plusIcon} />
             </button>
 
